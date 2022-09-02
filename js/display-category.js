@@ -20,11 +20,13 @@ const displayCategories = categories => {
 }
 
 const loadNews = (id) => {
+    toggleSpinner(true);
     //console.log(id);
     const url = `https://openapi.programming-hero.com/api/news/category/${id}`
     fetch(url)
         .then(res => res.json())
         .then(data => displayNews(data.data))
+        .catch(error => console.log(error))
 }
 
 const displayNews = newses => {
@@ -68,6 +70,7 @@ const displayNews = newses => {
         `;
         newsContainer.appendChild(div);
     })
+    toggleSpinner(false);
     var main = document.getElementById( 'news-container' );
 
     [].map.call( main.children, Object ).sort( function ( a, b ) {
@@ -77,5 +80,14 @@ const displayNews = newses => {
     });  
 }
 
+const toggleSpinner = isLoading =>{
+    const loaderSection = document.getElementById('loader');
+    if(isLoading === true){
+        loaderSection.classList.remove('d-none');
+    }
+    else{
+        loaderSection.classList.add('d-none');
+    }
+}
 
 loadCategory();
