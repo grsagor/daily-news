@@ -44,7 +44,7 @@ const displayNews = newses => {
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML =  ``;
     newses.forEach(news => {
-        console.log(news.author.img);
+        //console.log(news._id);
         //const viewNumber = news.total_view;
         //const viewString = viewNumber.toString();
         //console.log(viewString);
@@ -63,7 +63,7 @@ const displayNews = newses => {
                     <div class="d-flex justify-content-between">
                         <div><img style="height: 30px" src="${news.author.img}"> <span class="fw-semibold"> ${news.author.name}</span></div>
                         <div>${news.total_view}</div>
-                        <div><button><i class="fa-solid fa-arrow-right"></i></button></div>
+                        <div><button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="loadModal(${news._id})"><i class="fa-solid fa-arrow-right"></i></button></div>
                     </div>
                 </div>
             </div>
@@ -89,6 +89,10 @@ const toggleSpinner = isLoading =>{
     else{
         loaderSection.classList.add('d-none');
     }
+}
+
+const loadModal = id => {
+    console.log(id);
 }
 
 loadCategory();
