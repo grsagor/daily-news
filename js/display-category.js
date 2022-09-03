@@ -7,13 +7,14 @@ const loadCategory = () =>{
 
 
 const displayCategories = categories => {
+    //console.log(categories[0].category_name)//--------------------------------------
     const categoryContainer = document.getElementById('category-container');
     categories.forEach(category =>{
         //console.log(category.category_id);
         const categoryName = category.category_name;
         const div = document.createElement('div');
         div.innerHTML = `
-        <button onclick="loadNews('${category.category_id}')">${categoryName}</button>
+        <button class="bg-warning rounded border border-0" onclick="loadNews('${category.category_id}')">${categoryName}</button>
         `
         categoryContainer.appendChild(div);
     })
@@ -36,7 +37,7 @@ const displayNews = newses => {
     numberOfNewses.innerHTML = ``;
     const showNumber = document.createElement('div');
     showNumber.innerHTML = `
-    <h3 class="my-5 bg-white rounded p-3">${newses.length} newses found</h3>
+    <h3 class="my-5 bg-warning rounded p-3">${newses.length ? `${newses.length} news found.` : `No news availabe.`}</h3>
     `;
     numberOfNewses.appendChild(showNumber);
 
@@ -52,7 +53,7 @@ const displayNews = newses => {
         div.setAttribute('id',`dv_${news.total_view}`);
         div.classList.add('sorting');
         div.innerHTML = `
-        <div class="row g-0 bg-white my-5 p-4 rounded">
+        <div class="row g-0 bg-warning my-5 p-4 rounded">
             <div class="col-md-3">
             <img src="${news.thumbnail_url}" class="img-fluid" alt="...">
             </div>
@@ -63,7 +64,7 @@ const displayNews = newses => {
                     <div class="d-flex justify-content-between">
                         <div><img style="height: 30px" class="rounded-circle" src="${news.author.img}"> <span class="fw-semibold"> ${news.author.name}</span></div>
                         <div>${news.total_view}</div>
-                        <div><button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="loadModal('${news._id}')"><i class="fa-solid fa-arrow-right"></i></button></div>
+                        <div><button class="border border-0 btn btn-primary fw-bold p-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="loadModal('${news._id}')">See Details</button></div>
                     </div>
                 </div>
             </div>
