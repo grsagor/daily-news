@@ -14,7 +14,7 @@ const displayCategories = categories => {
         const categoryName = category.category_name;
         const div = document.createElement('div');
         div.innerHTML = `
-        <button class="bg-warning rounded border border-0 m-1" onclick="loadNews('${category.category_id}')">${categoryName}</button>
+        <button class="bg-warning rounded border border-0 m-1 p-2 fw-semibold" onclick="loadNews('${category.category_id}')">${categoryName}</button>
         `
         categoryContainer.appendChild(div);
     })
@@ -53,7 +53,7 @@ const displayNews = newses => {
         div.setAttribute('id',`dv_${news.total_view}`);
         div.classList.add('sorting');
         div.innerHTML = `
-        <div class="row g-0 bg-warning my-5 p-4 rounded">
+        <div class="row g-0 bg-warning mt-5 p-4 rounded">
             <div class="col-md-3">
             <img src="${news.thumbnail_url}" class="img-fluid" alt="...">
             </div>
