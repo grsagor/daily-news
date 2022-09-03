@@ -61,10 +61,10 @@ const displayNews = newses => {
                 <div class="card-body">
                     <h5 class="card-title my-3">${news.title}</h5>
                     <p class="card-text">${news.details.slice(0,500)}...</p>
-                    <div class="d-flex justify-content-between">
-                        <div><img style="height: 30px" class="rounded-circle" src="${news.author.img}"> <span class="fw-semibold"> ${news.author.name}</span></div>
-                        <div>${news.total_view}</div>
-                        <div><button class="border border-0 btn btn-primary fw-bold p-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="loadModal('${news._id}')">See Details</button></div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div><img style="height: 30px" class="rounded-circle" src="${news.author.img}"> <span class="fw-bold"> ${news.author.name}</span></div>
+                        <div><span class="fw-bold"><i class="fa-solid fa-eye"></i> ${news.total_view}</span></div>
+                        <div><button class="border border-0 btn btn-dark text-warning fw-semibold p-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="loadModal('${news._id}')">See Details</button></div>
                     </div>
                 </div>
             </div>
@@ -97,6 +97,7 @@ const loadModal = id => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayModal(data.data[0]))
+        .catch(error => console.log(error))
 }
 
 const displayModal = data =>{
