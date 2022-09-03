@@ -36,7 +36,7 @@ const displayNews = newses => {
     numberOfNewses.innerHTML = ``;
     const showNumber = document.createElement('div');
     showNumber.innerHTML = `
-    <h3>${newses.length} newses found</h3>
+    <h3 class="my-5 bg-white rounded p-3">${newses.length} newses found</h3>
     `;
     numberOfNewses.appendChild(showNumber);
 
@@ -44,25 +44,26 @@ const displayNews = newses => {
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML =  ``;
     newses.forEach(news => {
-        const viewNumber = news.total_view;
+        console.log(news.author.img);
+        //const viewNumber = news.total_view;
         //const viewString = viewNumber.toString();
         //console.log(viewString);
         const div = document.createElement('div');
         div.setAttribute('id',`dv_${news.total_view}`);
         div.classList.add('sorting');
         div.innerHTML = `
-        <div class="row g-0">
-            <div class="col-md-4">
-            <img src="${news.thumbnail_url}" class="img-fluid rounded-start" alt="...">
+        <div class="row g-0 bg-white my-5 p-4 rounded">
+            <div class="col-md-3">
+            <img src="${news.thumbnail_url}" class="img-fluid" alt="...">
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9 d-flex justify-content-center align-items-center">
                 <div class="card-body">
-                    <h5 class="card-title">${news.title}</h5>
-                    <p class="card-text">${news.details.slice(0,300)}...</p>
+                    <h5 class="card-title my-3">${news.title}</h5>
+                    <p class="card-text">${news.details.slice(0,500)}...</p>
                     <div class="d-flex justify-content-between">
-                    <div>${news.author.name}</div>
-                    <div>${news.total_view}</div>
-                    <div><i class="fa-solid fa-arrow-right"></i></div>
+                        <div><img style="height: 30px" src="${news.author.img}"> <span class="fw-semibold"> ${news.author.name}</span></div>
+                        <div>${news.total_view}</div>
+                        <div><button><i class="fa-solid fa-arrow-right"></i></button></div>
                     </div>
                 </div>
             </div>
