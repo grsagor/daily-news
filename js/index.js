@@ -55,7 +55,7 @@ const displayNews = newses => {
         div.innerHTML = `
         <div class="row g-0 bg-warning mt-5 p-4 rounded">
             <div class="col-md-3">
-            <img src="${news.thumbnail_url}" class="img-fluid" alt="...">
+            <img src="${news.thumbnail_url}" class="img-thumbnail" alt="...">
             </div>
             <div class="col-md-9 d-flex justify-content-center align-items-center">
                 <div class="card-body">
