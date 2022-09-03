@@ -14,7 +14,7 @@ const displayCategories = categories => {
         const categoryName = category.category_name;
         const div = document.createElement('div');
         div.innerHTML = `
-        <button class="bg-warning rounded border border-0" onclick="loadNews('${category.category_id}')">${categoryName}</button>
+        <button class="bg-warning rounded border border-0 m-1" onclick="loadNews('${category.category_id}')">${categoryName}</button>
         `
         categoryContainer.appendChild(div);
     })
