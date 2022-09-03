@@ -31,7 +31,7 @@ const loadNews = (id) => {
 
 const displayNews = newses => {
 
-
+    console.log(newses);
     const numberOfNewses = document.getElementById('number-of-news');
     numberOfNewses.innerHTML = ``;
     const showNumber = document.createElement('div');
@@ -61,9 +61,9 @@ const displayNews = newses => {
                     <h5 class="card-title my-3">${news.title}</h5>
                     <p class="card-text">${news.details.slice(0,500)}...</p>
                     <div class="d-flex justify-content-between">
-                        <div><img style="height: 30px" src="${news.author.img}"> <span class="fw-semibold"> ${news.author.name}</span></div>
+                        <div><img style="height: 30px" class="rounded-circle" src="${news.author.img}"> <span class="fw-semibold"> ${news.author.name}</span></div>
                         <div>${news.total_view}</div>
-                        <div><button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="loadModal(${news._id})"><i class="fa-solid fa-arrow-right"></i></button></div>
+                        <div><button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="loadModal('${news._id}')"><i class="fa-solid fa-arrow-right"></i></button></div>
                     </div>
                 </div>
             </div>
@@ -92,7 +92,28 @@ const toggleSpinner = isLoading =>{
 }
 
 const loadModal = id => {
-    console.log(id);
+    const url = `https://openapi.programming-hero.com/api/news/${id}`
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayModal(data.data[0]))
+}
+
+const displayModal = data =>{
+    console.log(data.image_url);
+    const newsTitle = document.getElementById('news-title');
+    newsTitle.innerText = data.title;
+
+    const authorImage = document.getElementById('author-img');
+    authorImage.innerHTML = `<img class="img-fluid" src="${data.image_url}" alt="">`
+
+    const authorName = document.getElementById('author-name');
+    authorName.innerText = data.author.name ? data.author.name : 'Author name not available';
+
+    const newsDetail = document.getElementById('news-details');
+    newsDetail.innerText = data.details;
+
+    const totalView = document.getElementById('total-view');
+    totalView.innerText = data.total_view ? data.total_view : 'No views yet';
 }
 
 loadCategory();
