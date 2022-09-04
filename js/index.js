@@ -62,8 +62,8 @@ const displayNews = newses => {
                     <h5 class="card-title my-3">${news.title}</h5>
                     <p class="card-text">${news.details.slice(0,500)}...</p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <div><img style="height: 30px" class="rounded-circle" src="${news.author.img}"> <span class="fw-bold"> ${news.author.name}</span></div>
-                        <div><span class="fw-bold"><i class="fa-solid fa-eye"></i> ${news.total_view}</span></div>
+                        <div><img style="height: 30px" class="rounded-circle" src="${news.author.img}"> <span class="fw-bold">${news.author.name ? `${news.author.name}` : `Not Available`}</span></div>
+                        <div><span class="fw-bold"><i class="fa-solid fa-eye"></i> ${news.total_view ? `${news.total_view}` : `No Views Yet`}</span></div>
                         <div><button class="border border-0 btn btn-dark text-warning fw-semibold p-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="loadModal('${news._id}')">See Details</button></div>
                     </div>
                 </div>
