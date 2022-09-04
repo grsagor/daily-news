@@ -7,10 +7,8 @@ const loadCategory = () =>{
 
 
 const displayCategories = categories => {
-    //console.log(categories[0].category_name)//--------------------------------------
     const categoryContainer = document.getElementById('category-container');
     categories.forEach(category =>{
-        //console.log(category.category_id);
         const categoryName = category.category_name;
         const div = document.createElement('div');
         div.innerHTML = `
@@ -22,7 +20,6 @@ const displayCategories = categories => {
 
 const loadNews = (id) => {
     toggleSpinner(true);
-    //console.log(id);
     const url = `https://openapi.programming-hero.com/api/news/category/${id}`
     fetch(url)
         .then(res => res.json())
@@ -31,8 +28,6 @@ const loadNews = (id) => {
 }
 
 const displayNews = newses => {
-
-    console.log(newses);
     const numberOfNewses = document.getElementById('number-of-news');
     numberOfNewses.innerHTML = ``;
     const showNumber = document.createElement('div');
@@ -41,14 +36,9 @@ const displayNews = newses => {
     `;
     numberOfNewses.appendChild(showNumber);
 
-    //console.log(newses.length);
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML =  ``;
     newses.forEach(news => {
-        //console.log(news._id);
-        //const viewNumber = news.total_view;
-        //const viewString = viewNumber.toString();
-        //console.log(viewString);
         const div = document.createElement('div');
         div.setAttribute('id',`dv_${news.total_view}`);
         div.classList.add('sorting');
@@ -101,7 +91,6 @@ const loadModal = id => {
 }
 
 const displayModal = data =>{
-    console.log(data.image_url);
     const newsTitle = document.getElementById('news-title');
     newsTitle.innerText = data.title;
 
